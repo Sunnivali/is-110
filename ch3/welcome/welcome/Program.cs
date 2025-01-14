@@ -4,7 +4,8 @@ class Welcome
 {
     static void Main()
     {
+        string person = "Sunniva";
         Console.Clear();
-        Console.WriteLine("Welcome") ;
+        Console.WriteLine($"Welcome, {person}") ;
     }
 }
