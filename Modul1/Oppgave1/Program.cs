@@ -4,10 +4,10 @@
     {
         Handlekurv handlekurv = new Handlekurv(); // Lager et objekt handelkurv av klassen Handlekurv
 
-        Console.Clear();
+        Console.Clear(); // Fjerner hvor filen er lagret, gjør det mer oversiktlig
         Console.Write("Hvor mange varer vil du legge til? ");
         
-        int antallVarer = int.Parse(Console.ReadLine());       // Parse er ein metode i systemklassen int
+        int antallVarer = int.Parse(Console.ReadLine());     // Parse er ein metode i systemklassen int
 
         for (int i = 0; i < antallVarer; i++)
         {

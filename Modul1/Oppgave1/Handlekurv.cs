@@ -16,8 +16,8 @@ class Handlekurv
 
     public void SkrivKvittering()
     {
-        Console.WriteLine("\nKvittering:");
-        Console.WriteLine($"Totalpris: {totalPris} kr");
-        Console.Write("\n");
+        Console.WriteLine("\nKvittering:"); // Lager ei tom linje for oversikten sin del
+        Console.WriteLine($"Totalpris: {totalPris} kr"); 
+        Console.Write("\n"); // tom linje
     }
 }
