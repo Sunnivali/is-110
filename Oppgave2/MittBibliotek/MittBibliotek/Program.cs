@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
-class Program
+class Program // Hovedprogram
 {
-    static List<Bok> bibliotek = new List<Bok>();
+    static List<Bok> bibliotek = new List<Bok>();  // Lager en liste for å lagre bøker
 
     static void Main()
     {
         bool kjører = true;
-        while (kjører)
+        while (kjører) // Hovedmeny som kjører i en løkke til bruker avslutter
         {
             Console.Clear();
             Console.WriteLine("\nBibliotek meny:");
@@ -22,20 +22,20 @@ class Program
             Console.Write("Velg et alternativ: ");
 
             string valg = Console.ReadLine();
-            switch (valg)
+            switch (valg)   // Utfører valg basert på menyen
             {
                 case "1": LeggTilBok(); break;
                 case "2": ListeOppBøker(); break;
                 case "3": SøkEtterForfatter(); break;
                 case "4": SøkEtterUtgivelsesår(); break;
                 case "5": FinnBokEtterTittel(); break;
-                case "6": kjører = false; break;
+                case "6": kjører = false; break; // Stopper programmet
                 default: Console.WriteLine("Ugyldig valg, prøv igjen."); break;
             }
         }
     }
 
-    static void LeggTilBok()
+    static void LeggTilBok()  // Lar bruker legge til en bok i listen
     {
         Console.Write("ISBN: "); string isbn = Console.ReadLine();
         Console.Write("Tittel: "); string tittel = Console.ReadLine();
@@ -43,7 +43,7 @@ class Program
         Console.Write("Utgivelsesår: "); int utgivelsesår = int.Parse(Console.ReadLine());
         Console.Write("Type (1: Roman, 2: Fagbok): "); string type = Console.ReadLine();
 
-        if (type == "1")
+        if (type == "1")  // Lager enten Roman eller Fagbok basert på brukerens valg
         {
             Console.Write("Sjanger: "); string sjanger = Console.ReadLine();
             bibliotek.Add(new Roman(isbn, tittel, forfatter, utgivelsesår, sjanger));
@@ -59,7 +59,7 @@ class Program
         }
     }
 
-    static void ListeOppBøker()
+    static void ListeOppBøker()    // Skriver ut alle bøker i listen
     {
         if (bibliotek.Count == 0)
         {
@@ -69,11 +69,11 @@ class Program
 
         foreach (var bok in bibliotek)
         {
-            bok.VisInfo();
+            bok.VisInfo(); // Kaller metoden som viser info om bok
         }
     }
 
-    static void SøkEtterForfatter()
+    static void SøkEtterForfatter()  // Søker etter bøker skrevet av en bestemt forfatter
     {
         Console.Write("Skriv forfatterens navn: ");
         string forfatter = Console.ReadLine();
@@ -85,7 +85,7 @@ class Program
         }
     }
 
-    static void SøkEtterUtgivelsesår()
+    static void SøkEtterUtgivelsesår()  // Søker etter bøker utgitt etter et gitt år
     {
         Console.Write("Skriv inn år: ");
         int år = int.Parse(Console.ReadLine());
@@ -97,7 +97,7 @@ class Program
         }
     }
 
-    static void FinnBokEtterTittel()
+    static void FinnBokEtterTittel() // Søker etter bok med bestemt tittel
     {
         Console.Write("Skriv inn boktittel: ");
         string tittel = Console.ReadLine();
