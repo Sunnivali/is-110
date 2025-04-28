@@ -1,13 +1,15 @@
 // Abstrakt klasse Bok
-// Basisklasse for bøker som tvinger subklasser til å implementere VisInfo-metoden.
 abstract class Bok
 {
-    public string ISBN { get; set; }
+    // Public Properties
+    public string ISBN { get; set; }    // leser og henter verdi
     public string Tittel { get; set; }
     public string Forfatter { get; set; }
     public int Utgivelsesår { get; set; }
+    public bool BokInne { get; set; } = true;   // brukes for å teste om noe er true eller false. Ei bok er allitid inne i utgangspunktet
 
-    public Bok(string isbn, string tittel, string forfatter, int utgivelsesår)  // Konstruktør for å sette verdier på bokens egenskaper.
+    // Constructor
+    public Bok(string isbn, string tittel, string forfatter, int utgivelsesår) // brukes for å sette starverdier
     {
         ISBN = isbn;
         Tittel = tittel;
@@ -15,13 +17,14 @@ abstract class Bok
         Utgivelsesår = utgivelsesår;
     }
 
-    public abstract void VisInfo(); // Abstrakt metode som må implementeres i subklasser for å vise informasjon om boken.
+    // Abstract Methods
+    public abstract void VisInfo(); // Må implementeres i subklasser, skal arves av andre klasser
 }
 
 // Grensesnitt for lånefunksjoner
-// Definerer metodene LånUt og LeverInn som må implementeres i klasser som bruker dette grensesnittet.
-interface IBokFunksjoner
+interface IBokFunksjoner // definerer et interface, en list med krav
 {
-    void LånUt(); // Metode for å låne ut en bok
-    void LeverInn(); // Metode for å levere inn en bok
+    bool ErBokInne();       //metode ErBookInne, returneren en bool.
+    void LaanUt();
+    void LeverInn();
 }

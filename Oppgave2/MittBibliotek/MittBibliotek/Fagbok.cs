@@ -1,20 +1,52 @@
-class Fagbok : Bok, IBokFunksjoner // Klasse for fagbøker, arver fra Bok og implementerer IBokFunksjoner
+class Fagbok : Bok, IBokFunksjoner // arver fra bok, implementerer IBokFunksjoner-interface
 {
-    public string Fagområde { get; set; } // Spesifikt fagområde for fagboken
+    public string Fagområde { get; set; }   // leser og henter verdi
 
-
- // Konstruktør som sender felles data til basisklassen og setter fagområde
+    // Constructor
     public Fagbok(string isbn, string tittel, string forfatter, int utgivelsesår, string fagområde)
-        : base(isbn, tittel, forfatter, utgivelsesår)
+        : base(isbn, tittel, forfatter, utgivelsesår) // refererer til superklassen som Fagbok arvet fra Bok
     {
-        Fagområde = fagområde;
+        Fagområde = fagområde;     //setter egenskapen "Fagområde" til verdien som ble sendt inn som parameter "fagområdet"
+    }                              // etter at Bok-konstruktøren er kalt. 
+
+    // Overriding Abstract Methods
+    public override void VisInfo()
+    {
+        Console.WriteLine($"[Fagbok] {Tittel} av {Forfatter} ({Utgivelsesår}) - Fagområde: {Fagområde}. ISBN {ISBN}");
     }
 
-    public override void VisInfo()   // Implementasjon av abstrakt metode fra Bok
+
+    // INTERFACE METHODS
+    // public void LånUt() => Console.WriteLine($"Boken '{Tittel}' er lånt ut.");
+   public void LaanUt()
     {
-        Console.WriteLine($"[Fagbok] {Tittel} av {Forfatter} ({Utgivelsesår}) - Fagområde: {Fagområde}");
+        if (BokInne)
+        {
+            BokInne = false;
+            Console.WriteLine($"Fagboken '{Tittel}' er nå lånt ut.");
+        }
+        else
+        {
+            Console.WriteLine($"Fagboken '{Tittel}' er på utlån!");
+        }
     }
 
-    public void LånUt() => Console.WriteLine($"Boken '{Tittel}' er lånt ut.");     // Metode for å låne ut boken
-    public void LeverInn() => Console.WriteLine($"Boken '{Tittel}' er levert tilbake.");     // Metode for å levere inn boken
-}
+    // public void LeverInn() => Console.WriteLine($"Boken '{Tittel}' er levert tilbake.");
+    public void LeverInn()
+    {
+        if (!BokInne)
+        {
+            BokInne = true;
+            Console.WriteLine($"Fagboken '{Tittel}' er nå levert tilbake.");
+        }
+        else
+        {
+            Console.WriteLine($"Fagboken '{Tittel}' er allerede levert tilbake.");
+        }
+    }
+
+    public bool ErBokInne()
+    {
+        return BokInne;
+    }
+}    
